@@ -41,21 +41,37 @@ public class JPAMeetingRoomsRepository implements MeetingRoomsRepository {
 
     @Override
     public List<MeetingRoom> getMeetingRooms() {
-        return null;
+        EntityManager em = entityManagerFactory.createEntityManager();
+        List<MeetingRoom> resultList = em.createQuery("select m from MeetingRoom m order by m.name asc", MeetingRoom.class)
+                .getResultList();
+        em.close();
+        return resultList;
     }
 
     @Override
     public List<MeetingRoom> getExactMeetingRoomByName(String name) {
-        return null;
+        EntityManager em = entityManagerFactory.createEntityManager();
+        List<MeetingRoom> resultList = em.createQuery("select m from MeetingRoom m where m.name like :name order by m.name asc", MeetingRoom.class)
+                .setParameter("name", name)
+                .getResultList();
+        em.close();
+        return resultList;
     }
 
     @Override
     public List<MeetingRoom> getMeetingRoomsByPrefix(String nameOrPrefix) {
-        return null;
+        EntityManager em = entityManagerFactory.createEntityManager();
+        List<MeetingRoom> resultList = em.createQuery("select m from MeetingRoom m where m.name like :name order by m.name asc", MeetingRoom.class)
+                .setParameter("name", nameOrPrefix + "%")
+                .getResultList();
+        em.close();
+        return resultList;
     }
 
     @Override
     public void deleteAll() {
-
+        EntityManager em = entityManagerFactory.createEntityManager();
+        em.createQuery("delete from MeetingRoom");
+        em.close();
     }
 }

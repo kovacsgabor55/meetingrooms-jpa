@@ -54,6 +54,7 @@ class JPAMeetingRoomsRepositoryTest {
 
     @Test
     void getMeetingRooms() {
+
     }
 
     @Test
