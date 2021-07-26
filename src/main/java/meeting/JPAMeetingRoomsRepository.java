@@ -1,16 +1,15 @@
 package meeting;
 
+import lombok.AllArgsConstructor;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
+@AllArgsConstructor
 public class JPAMeetingRoomsRepository implements MeetingRoomsRepository {
 
     private final EntityManagerFactory entityManagerFactory;
-
-    public JPAMeetingRoomsRepository(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
-    }
 
     @Override
     public MeetingRoom save(String name, int width, int length) {
